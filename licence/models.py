@@ -7,19 +7,19 @@ STATUS_CHOICES = [
     ]
 
 class Licence(models.Model):
-    issued_date = models.DateField()
+    issued_date = models.DateField(auto_now_add=True)
     expiration_date = models.DateField()
-    key = models.CharField(max_length=255, unique=True)
+    key = models.CharField(max_length=255, unique=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
-    type = models.CharField(max_length=50, null=True, blank=True)  # License type (e.g., premium, trial)
+    type = models.CharField(max_length=50, null=True, blank=True, default="trial")  # License type (e.g., premium, trial)
 
     def __str__(self):
         return f'Licence {self.key} ({self.status})'
 
 
 class Device(models.Model):
-    first_login = models.DateTimeField()
-    last_login = models.DateTimeField()
+    first_login = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now=True)
     mac = models.CharField(max_length=17, unique=True)  # MAC addresses have a fixed length
     device_name = models.CharField(max_length=100, null=True, blank=True)  # Optional: for identifying device
     licence = models.ForeignKey(Licence, on_delete=models.CASCADE)

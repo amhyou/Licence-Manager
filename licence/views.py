@@ -1,9 +1,11 @@
 from django.http import JsonResponse, HttpRequest
 from django.views.decorators.csrf import csrf_exempt
-import json
+from .models import Licence, Device
+from datetime import timedelta, date
+import json, uuid
 
 @csrf_exempt
-def check(request: HttpRequest):
+def check_licence(request: HttpRequest):
     if request.method != "POST":
         data = data = {
             'msg': 'method not allowed',
@@ -20,17 +22,19 @@ def check(request: HttpRequest):
 
 
 @csrf_exempt
-def add(request: HttpRequest):
+def add_licence(request: HttpRequest):
     if request.method != "POST":
         data = data = {
             'msg': 'method not allowed',
             'status': 'ko'
         }
         return JsonResponse(data)
-    body = json.loads(request.body)
-    print(body)
+
+    licence = Licence.objects.create(key=str(uuid.uuid4()),expiration_date=date.today()+timedelta(days=30))
+
     data = {
-        'msg': '123456',
-        'status': 'ok'
+        'licence': licence.key,
+        'days': (licence.expiration_date - licence.issued_date).days,
     }
+
     return JsonResponse(data)
