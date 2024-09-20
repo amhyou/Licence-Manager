@@ -1,0 +1,4 @@
+venv
+static
+*.pyc
+db.sqlite3
