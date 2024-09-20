@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import check_licence, add_licence
+from .views import check_licence
 
 urlpatterns = [
-    path('check', check_licence),
-    path('add', add_licence),
+    path('check', check_licence, name="check-licence"),
 ]
