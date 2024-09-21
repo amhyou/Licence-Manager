@@ -25,8 +25,11 @@ SECRET_KEY = 'django-insecure-r7nz9vkb-wjkhb*&uka$yb2%wt9%l$mg(73k29w7n*9dk7%ed=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "lima.amhyou.com"]
 
+CSRF_TRUSTED_ORIGINS = ['https://lima.amhyou.com']
+
+CORS_ALLOWED_ORIGINS = ['https://lima.amhyou.com']
 
 # Application definition
 
