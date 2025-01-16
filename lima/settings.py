@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'lima.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Taoufik_ByteCleaner_Lima', 
+        'USER': 'amhyou', 
+        'PASSWORD': 'AmhYou85231!', 
+        'HOST': '185.255.131.194', 
+        'PORT': '31010', 
     }
 }
 

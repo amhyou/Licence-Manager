@@ -80,7 +80,7 @@ def check_licence(request):
             'status': 'ok'
         }
         return Response(data, status=status.HTTP_200_OK)
-    elif len(mac_addresses) < 3:
+    elif len(mac_addresses) < licence.max_devices:
         try:
             Device.objects.create(licence=licence, mac=mac)
         except Exception as ex:

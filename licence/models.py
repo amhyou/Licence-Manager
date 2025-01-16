@@ -14,6 +14,7 @@ class Licence(models.Model):
     key = models.CharField(max_length=255, unique=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
     type = models.CharField(max_length=50, null=True, blank=True, default="trial")  # License type (e.g., premium, trial)
+    max_devices = models.PositiveSmallIntegerField(default=3)
 
     def save(self, *args, **kwargs):
         if not self.key:
@@ -30,7 +31,7 @@ class Licence(models.Model):
 class Device(models.Model):
     first_login = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
-    mac = models.CharField(max_length=17, unique=True)  # MAC addresses have a fixed length
+    mac = models.CharField(max_length=17)  # MAC addresses have a fixed length
     device_name = models.CharField(max_length=100, null=True, blank=True)  # Optional: for identifying device
     licence = models.ForeignKey(Licence, on_delete=models.CASCADE)
 
