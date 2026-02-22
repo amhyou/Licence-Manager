@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'lima.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Taoufik_ByteCleaner_Lima', 
+        'NAME': 'Licence-Manager-Taoufik', 
         'USER': 'amhyou', 
         'PASSWORD': 'AmhYou85231!', 
-        'HOST': '185.255.131.194', 
-        'PORT': '31010', 
+        'HOST': 'postgresql-hl.postgres',
+        'PORT': '5432', 
     }
 }
 
